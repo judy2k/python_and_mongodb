@@ -7,6 +7,7 @@ from pprint import pprint
 from dotenv import load_dotenv
 
 import bson
+import pymongo
 from pymongo import MongoClient
 
 
@@ -46,7 +47,11 @@ recipes = db.get_collection("recipes")
 # )
 
 print_title("All Documents")
-cursor = recipes.find(None, sort=[("name", 1)])
+cursor = recipes.find(
+    sort=[
+        ("name", pymongo.ASCENDING),
+    ],
+)
 for recipe in cursor:
     print("Cocktail:", recipe["name"])
 
