@@ -61,6 +61,20 @@ cursor = recipes.find(query)
 for recipe in cursor:
     pprint(recipe)
 
+"""
+{'_id': ObjectId('5f7b4b6204799f5cf837b1e1'),
+ 'garnish': 'Orange Twist',
+ 'ingredients': [{'name': 'Campari', 'quantity': {'unit': 'ml', 'value': 30}},
+                 {'name': 'Sweet Vermouth',
+                  'quantity': {'unit': 'ml', 'value': 30}},
+                 {'name': 'Prosecco', 'quantity': {'unit': 'ml', 'value': 30}}],
+ 'instructions': ['Stir Campari & vermouth with ice',
+                  'Pour into a champagne flute',
+                  'Add wine & gently combine',
+                  'Serve with orange twist'],
+ 'name': 'Negroni Sbagliato',
+"""
+
 print_title("Vodka Cocktails")
 query = {"ingredients": {"$elemMatch": {"name": "Vodka"}}}
 project = {"reviews": 0}
@@ -207,7 +221,7 @@ if recipes.find_one({"name": "The Ghost"}) is None:
 else:
     print("Oh dear, yes.")
 
-
+print_title("Updating Part of a Document")
 recipes.update_one(
     {"name": "Negroni Sbagliato"},
     {
@@ -216,9 +230,35 @@ recipes.update_one(
         },
     },
 )
-
 pprint(
     recipes.find_one(
         {"name": "Negroni Sbagliato"},
     )
 )
+
+
+"""
+{'_id': ObjectId('5f7b4b6204799f5cf837b1e1'),
+ 'garnish': 'Orange Twist',
+ 'ingredients': [{'name': 'Campari', 'quantity': {'unit': 'ml', 'value': 30}},
+                 {'name': 'Sweet Vermouth',
+                  'quantity': {'unit': 'ml', 'value': 30}},
+                 {'name': 'Prosecco', 'quantity': {'unit': 'ml', 'value': 30}}],
+ 'instructions': ['Stir Campari & vermouth with ice',
+                  'Pour into a champagne flute',
+                  'Add wine & gently combine',
+                  'Serve with orange twist'],
+ 'name': 'Negroni Sbagliato',
+ 'reviews': [{'rating': 4,
+              'when': datetime.datetime(2020, 11, 8, 16, 53, 25, 905000)},
+             {'rating': 4,
+              'when': datetime.datetime(2020, 11, 8, 16, 54, 15, 279000)},
+             {'rating': 4,
+              'when': datetime.datetime(2020, 11, 8, 16, 54, 23, 818000)},
+             {'rating': 4,
+              'when': datetime.datetime(2020, 11, 8, 16, 54, 26, 744000)},
+             {'rating': 4,
+              'when': datetime.datetime(2020, 11, 8, 17, 40, 26, 656000)},
+             {'rating': 4,
+              'when': datetime.datetime(2020, 11, 8, 17, 51, 2, 903000)}]}
+"""
