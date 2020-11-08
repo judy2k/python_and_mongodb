@@ -46,10 +46,9 @@ recipes = db.get_collection("recipes")
 # )
 
 print_title("All Documents")
-cursor = recipes.find()
+cursor = recipes.find(None, sort=[("name", 1)])
 for recipe in cursor:
     print("Cocktail:", recipe["name"])
-
 
 print_title("Negroni Sbagliato")
 query = {"name": "Negroni Sbagliato"}
