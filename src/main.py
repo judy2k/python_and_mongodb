@@ -31,8 +31,15 @@ recipes = db.get_collection("recipes")
 recipes.insert_one(
     {
         "name": "Dodgy Cocktail",
-        "ingredients": [{"name": "Water", "quantity": {"unit": "ml", "amount": 30}}],
-        "instructions": ["Pour yourself some water from the tap."],
+        "ingredients": [
+            {
+                "name": "Water",
+                "quantity": {"unit": "ml", "amount": 30},
+            }
+        ],
+        "instructions": [
+            "Pour yourself some water from the tap.",
+        ],
     }
 )
 
