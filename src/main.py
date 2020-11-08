@@ -30,20 +30,26 @@ client = MongoClient(MONGODB_URI)
 db = client.get_database("cocktails")
 recipes = db.get_collection("recipes")
 
-recipes.insert_one(
-    {
-        "name": "Dodgy Cocktail",
-        "ingredients": [
-            {
-                "name": "Water",
-                "quantity": {"unit": "ml", "amount": 30},
-            }
-        ],
-        "instructions": [
-            "Pour yourself some water from the tap.",
-        ],
-    }
-)
+# recipes.insert_one(
+#     {
+#         "name": "Dodgy Cocktail",
+#         "ingredients": [
+#             {
+#                 "name": "Water",
+#                 "quantity": {"unit": "ml", "amount": 30},
+#             }
+#         ],
+#         "instructions": [
+#             "Pour yourself some water from the tap.",
+#         ],
+#     }
+# )
+
+print_title("All Documents")
+cursor = recipes.find()
+for recipe in cursor:
+    print("Cocktail:", recipe["name"])
+
 
 print_title("Negroni Sbagliato")
 query = {"name": "Negroni Sbagliato"}
