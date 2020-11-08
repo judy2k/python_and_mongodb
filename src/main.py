@@ -25,6 +25,8 @@ MONGODB_URI = os.environ["MONGODB_URI"]
 
 # Connect to your MongoDB cluster:
 client = MongoClient(MONGODB_URI)
+
+# Get a reference to the "recipes" collection:
 db = client.get_database("cocktails")
 recipes = db.get_collection("recipes")
 
